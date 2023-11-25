@@ -1,5 +1,5 @@
 import logo from '../assets/images/logo.png';
-import main from '../assets/images/main.svg';
+import hero from '../assets/images/hero.svg';
 import Wrapper from '../assets/wrappers/LandingPage';
 
 const Landing = () => {
@@ -11,19 +11,18 @@ const Landing = () => {
 			<div className='container page'>
 				<div className='info'>
 					<h1>
-						Job <span>tracking</span> app!
+						Job <span>Board</span> Central!
 					</h1>
 					<p>
-						I'm baby xOXO mumblecore grailed, ethical craft soda listicle pop-up
-						tbh gentrify iceland copper mug neutra gastropub asymmetrical. Pok
-						pok pug pork belly jianbing fixie mustache jean shorts distillery
-						vice DIY asymmetrical bitters neutral milk hotel blackbird spyplane.
-						Etsy pop-up vinyl tote bag lyft, typewriter pinterest copper mug
-						bitters intelligentsia listicle prism.
+						Welcome to Job Board Central, your ultimate destination for career
+						advancement and opportunity discovery! We're here to bridge the gap
+						between talented individuals and their dream jobs. Our platform is a
+						vibrant hub where job seekers meet their future employers in an
+						environment that champions diversity, innovation, and growth.
 					</p>
 					<button className='btn btn-hero'>Login/Register</button>
 				</div>
-				<img src={main} alt='job hunt' className='img main-img' />
+				<img src={hero} alt='job hunt' className='img main-img' />
 			</div>
 		</Wrapper>
 	);
