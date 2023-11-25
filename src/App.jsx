@@ -1,12 +1,13 @@
 import Landing from './pages/Landing';
+import styled from 'styled-components';
 // import './App.css';
 
-function App() {
+const App = () => {
 	return (
 		<>
 			<Landing />
 		</>
 	);
-}
+};
 
 export default App;
