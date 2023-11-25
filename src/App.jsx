@@ -1,9 +1,10 @@
-import './App.css';
+import Landing from './pages/Landing';
+// import './App.css';
 
 function App() {
 	return (
 		<>
-			<h1>Job Board</h1>
+			<Landing />
 		</>
 	);
 }
