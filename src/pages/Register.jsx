@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Logo } from '../components';
+import { Logo, FormRow } from '../components';
 import Wrapper from '../assets/wrappers/RegisterPage.js';
 
 const initialState = {
@@ -27,19 +27,26 @@ const Register = () => {
 				<Logo />
 				<h3>Login</h3>
 				{/* name field */}
-				<div className='form-row'>
-					<label forhtml='name' className='form-label'>
-						Name
-					</label>
-					<input
-						type='text'
-						name='name'
-						placeholder='name'
-						value={values.name}
-						onChange={handleChange}
-						className='form-input'
-					/>
-				</div>
+				<FormRow
+					type='text'
+					name='name'
+					value={values.name}
+					handleChange={handleChange}
+				/>
+				{/* email field */}
+				<FormRow
+					type='email'
+					name='email'
+					value={values.email}
+					handleChange={handleChange}
+				/>
+				{/* password field */}
+				<FormRow
+					type='password'
+					name='password'
+					value={values.password}
+					handleChange={handleChange}
+				/>
 				<button type='submit' className='btn btn-block'>
 					Submit
 				</button>
