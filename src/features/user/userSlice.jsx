@@ -14,13 +14,10 @@ export const registerUser = createAsyncThunk(
 	'user/registerUser',
 	async (user, thunkAPI) => {
 		try {
-			// send user data to server to register
-			const resp = await customFetch.post('/auth/testingRegister', user);
-			console.log(`Register User: ${JSON.stringify(user)}`);
-			console.log(resp);
+			const resp = await customFetch.post('/auth/register', user);
+			return resp.data;
 		} catch (error) {
-			toast.error(error.response.data.msg);
-			console.log(error.response);
+			return thunkAPI.rejectWithValue(error.response.data.msg);
 		}
 	}
 );
@@ -40,10 +37,27 @@ const userSlice = createSlice({
 	name: 'user',
 	// actual state object of user etc.
 	initialState,
+	// extra rules for user state statuses
+	extraReducers: {
+		[registerUser.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[registerUser.fulfilled]: (state, { payload }) => {
+			const { user } = payload;
+			state.isLoading = false;
+			state.user = user;
+			toast.success(`Hello there ${user.name}`);
+		},
+		[registerUser.rejected]: (state, { payload }) => {
+			state.isLoading = false;
+			toast.error(payload);
+		},
+	},
 });
 
 export default userSlice.reducer;
 
+// Email has to be unique or server error will happen
 /* Detailed User Registration Process:
 
 1. User registers: In the Register component, users enter their information into the form fields (like name, email, and password). This data is collected and managed in the component's state using React's useState hook.
