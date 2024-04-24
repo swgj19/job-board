@@ -1,11 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import customFetch from '../../utils/axios';
+import {
+	addUserToLocalStorage,
+	getUserFromLocalStorage,
+	removeUserFromLocalStorage,
+} from '../../utils/localStorage';
 import { toast } from 'react-toastify';
 
 // object where state data will be stored/updated
 const initialState = {
 	isLoading: false,
-	user: null,
+	user: getUserFromLocalStorage(),
 };
 
 // pass action user/registerUser as first param
@@ -23,12 +28,14 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-	'user/loginUser',
+	'/auth/login',
 	async (user, thunkAPI) => {
 		try {
-			// send user data to server to login user
-			console.log(`Logged In: ${JSON.stringify(user)}`);
-		} catch (error) {}
+			const resp = await customFetch.post('/auth/login', user);
+			return resp.data;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error.response.data.msg);
+		}
 	}
 );
 
@@ -39,6 +46,10 @@ const userSlice = createSlice({
 	initialState,
 	// extra rules for user state statuses
 	extraReducers: {
+		// map action type to reducer function
+		// payload is resp.data from thunk API
+		/* When an action is dispatched, Redux internally calls the reducer with two arguments: the current state slice managed by that reducer, and the dispatched action.*/
+		/* When you want to use a variable as a property name in an object literal, you need to wrap it in brackets []. This is known as computed property names. */
 		[registerUser.pending]: (state) => {
 			state.isLoading = true;
 		},
@@ -46,9 +57,24 @@ const userSlice = createSlice({
 			const { user } = payload;
 			state.isLoading = false;
 			state.user = user;
+			addUserToLocalStorage(user);
 			toast.success(`Hello there ${user.name}`);
 		},
 		[registerUser.rejected]: (state, { payload }) => {
+			state.isLoading = false;
+			toast.error(payload);
+		},
+		[loginUser.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[loginUser.fulfilled]: (state, { payload }) => {
+			const { user } = payload;
+			state.isLoading = false;
+			state.user = user;
+			addUserToLocalStorage(user);
+			toast.success(`Welcome ${user.name}`);
+		},
+		[loginUser.rejected]: (state, { payload }) => {
 			state.isLoading = false;
 			toast.error(payload);
 		},
@@ -76,7 +102,7 @@ Inside the registerUser thunk, the user parameter receives the data object that 
 This user object is then used as the payload in the customFetch.post call to send the user's data to your backend for processing (e.g., creating a new user account in your database).
 
 5. Backend API Request:
-The backend API (/auth/testingRegister) receives this data and processes it accordingly. If successful, it might return a response that could include user details, a success message, or tokens, though your current thunk implementation does not yet handle or store the response data.
+The backend API (/auth/register) receives this data and processes it accordingly. If successful, it might return a response that could include user details, a success message, or tokens, though your current thunk implementation does not yet handle or store the response data.
 
 6. Redux State Update (if implemented):
 - After receiving a successful response from the backend, an action could be dispatched within the thunk to update the Redux state. This would involve updating the 'user' property in the initialState from 'null' to now include the detailed information of the newly registered user, reflecting their logged-in status.
