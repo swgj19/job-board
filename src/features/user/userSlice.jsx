@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 // object where state data will be stored/updated
 const initialState = {
 	isLoading: false,
+	isSidebarOpen: false,
 	user: getUserFromLocalStorage(),
 };
 
@@ -44,6 +45,13 @@ const userSlice = createSlice({
 	name: 'user',
 	// actual state object of user etc.
 	initialState,
+	// reducers
+	reducers: {
+		toggleSidebar: (state) => {
+			state.isSidebarOpen = !state.isSidebarOpen;
+		},
+	},
+
 	// extra rules for user state statuses
 	extraReducers: {
 		// map action type to reducer function
@@ -81,6 +89,7 @@ const userSlice = createSlice({
 	},
 });
 
+export const { toggleSidebar } = userSlice.actions;
 export default userSlice.reducer;
 
 // Email has to be unique or server error will happen
