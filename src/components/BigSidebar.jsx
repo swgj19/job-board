@@ -1,5 +1,7 @@
+import Wrapper from '../assets/wrappers/BigSidebar';
+
 const BigSideBar = () => {
-	return <h2>BigSidebar</h2>;
+	return <Wrapper>BigSidebar</Wrapper>;
 };
 
 export default BigSideBar;
