@@ -50,6 +50,11 @@ const userSlice = createSlice({
 		toggleSidebar: (state) => {
 			state.isSidebarOpen = !state.isSidebarOpen;
 		},
+		logoutUser: (state) => {
+			state.user = null;
+			state.isSidebarOpen = false;
+			removeUserFromLocalStorage();
+		},
 	},
 
 	// extra rules for user state statuses
@@ -89,7 +94,7 @@ const userSlice = createSlice({
 	},
 });
 
-export const { toggleSidebar } = userSlice.actions;
+export const { toggleSidebar, logoutUser } = userSlice.actions;
 export default userSlice.reducer;
 
 // Email has to be unique or server error will happen
