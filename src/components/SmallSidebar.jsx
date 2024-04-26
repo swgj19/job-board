@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Logo from './Logo';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSidebar } from '../features/user/userSlice';
+import links from '../utils/links';
 
 const SmallSideBar = () => {
 	/* useSelector((store) => store.user)
@@ -29,7 +30,26 @@ const SmallSideBar = () => {
 					<header>
 						<Logo />
 					</header>
-					<div className='nav-links'>nav links</div>
+					<div className='nav-links'>
+						{links.map((link) => {
+							const { text, path, id, icon } = link;
+
+							return (
+								<NavLink
+									to={path}
+									className={({ isActive }) =>
+										isActive ? 'nav-link active' : 'nav-link'
+									}
+									key={id}
+									onClick={toggle}
+									end
+								>
+									<span className='icon'>{icon}</span>
+									{text}
+								</NavLink>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</Wrapper>
