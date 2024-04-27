@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './features/user/userSlice';
+import jobSlice from './features/job/jobSlice';
 
 /* store: the library that contains books
 This is where the entire state of your application is stored. Think of it as a big bookshelf that has information about everything. */
@@ -24,5 +25,6 @@ Thunks in this context are like asking the library to handle a request that migh
 export const store = configureStore({
 	reducer: {
 		user: userSlice,
+		job: jobSlice,
 	},
 });
