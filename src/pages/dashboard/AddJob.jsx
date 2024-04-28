@@ -3,6 +3,7 @@ import Wrapper from '../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CgRowFirst } from 'react-icons/cg';
+import { handleChange } from '../../features/job/jobSlice';
 
 const AddJob = () => {
 	const {
@@ -18,6 +19,8 @@ const AddJob = () => {
 		editJobId,
 	} = useSelector((store) => store.job);
 
+	const dispatch = useDispatch();
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!position || !company || !jobLocation) {
@@ -29,7 +32,8 @@ const AddJob = () => {
 	const handleJobInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
-		console.log(name, value);
+		dispatch(handleChange({ name, value }));
+		console.log(handleChange());
 	};
 
 	return (
