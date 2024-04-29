@@ -65,6 +65,7 @@ const userSlice = createSlice({
 		// payload is resp.data from thunk API
 		/* When an action is dispatched, Redux internally calls the reducer with two arguments: the current state slice managed by that reducer, and the dispatched action.*/
 		/* When you want to use a variable as a property name in an object literal, you need to wrap it in brackets []. This is known as computed property names. */
+		/* When you use these generated action types as keys in the extraReducers of a slice, you're setting up handlers that respond dynamically based on the state of the asynchronous request. The actual strings that represent these action types are generated dynamically by Redux Toolkit and might not be known beforehand. */
 		[registerUser.pending]: (state) => {
 			state.isLoading = true;
 		},

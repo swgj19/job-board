@@ -3,7 +3,11 @@ import Wrapper from '../../assets/wrappers/DashboardFormPage';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CgRowFirst } from 'react-icons/cg';
-import { handleChange, clearValues } from '../../features/job/jobSlice';
+import {
+	handleChange,
+	clearValues,
+	createJob,
+} from '../../features/job/jobSlice';
 
 const AddJob = () => {
 	const {
@@ -27,6 +31,15 @@ const AddJob = () => {
 			toast.error('Please fill out all fields');
 			return;
 		}
+		dispatch(
+			createJob({
+				position: position,
+				company: company,
+				jobLocation: jobLocation,
+				jobType: jobType,
+				status,
+			})
+		);
 	};
 
 	const handleJobInput = (e) => {
