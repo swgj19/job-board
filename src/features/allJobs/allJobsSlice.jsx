@@ -11,7 +11,7 @@ const initialFilterState = {
 };
 
 const initialState = {
-	isLoading: false,
+	isLoading: true,
 	jobs: [],
 	totalJobs: 0,
 	numOfPages: 1,
@@ -23,7 +23,8 @@ const initialState = {
 
 const allJobsSlice = createSlice({
 	name: 'allJobs',
-	...initialState,
+	initialState: initialState,
+	reducers: {},
 });
 
 export default allJobsSlice.reducer;

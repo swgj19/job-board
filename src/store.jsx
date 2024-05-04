@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './features/user/userSlice';
 import jobSlice from './features/job/jobSlice';
+import allJobsSlice from './features/allJobs/allJobsSlice';
 
 /* store: the library that contains books
 This is where the entire state of your application is stored. Think of it as a big bookshelf that has information about everything. */
