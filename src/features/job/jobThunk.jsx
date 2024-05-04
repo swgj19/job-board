@@ -1,9 +1,10 @@
 import customFetch from '../../utils/axios';
 import { logoutUser } from '../user/userSlice';
+import { clearValues } from './jobSlice';
 
 export const createJobThunk = async (url, job, thunkAPI) => {
 	try {
-		resp = await customFetch.post(url, job, {
+		const resp = await customFetch.post(url, job, {
 			headers: {
 				authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
 			},

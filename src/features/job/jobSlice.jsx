@@ -36,7 +36,6 @@ const jobSlice = createSlice({
 		handleChange: (state, { payload: { name, value } }) => {
 			state[name] = value;
 		},
-		// return initial state
 		clearValues: () => {
 			return initialState;
 		},
