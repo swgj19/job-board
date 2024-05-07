@@ -61,13 +61,13 @@ const Wrapper = styled.article`
 		grid-template-columns: 1fr;
 		row-gap: 0.5rem;
 		@media (min-width: 576px) {
-			grid-template-columns: 3fr 1fr;
+			grid-template-columns: 1fr;
 		}
 		@media (min-width: 992px) {
 			grid-template-columns: 1fr;
 		}
 		@media (min-width: 1120px) {
-			grid-template-columns: 3fr 1fr;
+			grid-template-columns: 1fr;
 		}
 	}
 
