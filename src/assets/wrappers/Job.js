@@ -60,14 +60,21 @@ const Wrapper = styled.article`
 		display: grid;
 		grid-template-columns: 1fr;
 		row-gap: 0.5rem;
+		column-gap: 0.5rem;
 		@media (min-width: 576px) {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(130px, 1fr) minmax(140px, 2fr) minmax(
+					120px,
+					1fr
+				);
 		}
 		@media (min-width: 992px) {
 			grid-template-columns: 1fr;
 		}
 		@media (min-width: 1120px) {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(130px, 1fr) minmax(140px, 2fr) minmax(
+					120px,
+					1fr
+				);
 		}
 	}
 
@@ -76,7 +83,7 @@ const Wrapper = styled.article`
 		text-transform: capitalize;
 		letter-spacing: var(--letterSpacing);
 		text-align: center;
-		width: 100px;
+		width: auto;
 		height: 30px;
 		margin-top: 0.5rem;
 	}

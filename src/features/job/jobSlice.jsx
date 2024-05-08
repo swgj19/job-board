@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { createJobThunk } from './jobThunk';
+import { showLoading, hideLoading, getAllJobs } from '../allJobs/allJobsSlice';
 
 const initialState = {
 	isLoading: false,
