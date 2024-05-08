@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
 import JobInfo from './JobInfo';
+import ConfirmationModal from './ConfirmationModal.jsx';
 import moment from 'moment';
 import { deleteJob } from '../features/job/jobSlice';
 
@@ -15,9 +17,15 @@ const Job = ({
 	createdAt,
 	status,
 }) => {
+	const [isModalOpen, setModalOpen] = useState(false);
 	const dispatch = useDispatch();
 
 	const date = moment(createdAt).format('MMM Do, YYYY');
+
+	const handleDelete = () => {
+		dispatch(deleteJob(_id));
+		setModalOpen(false);
+	};
 
 	return (
 		<Wrapper>
@@ -51,12 +59,16 @@ const Job = ({
 						<button
 							type='button'
 							className='btn delete-btn'
-							onClick={() => {
-								dispatch(deleteJob(_id));
-							}}
+							onClick={() => setModalOpen(true)}
 						>
 							Delete
 						</button>
+						<ConfirmationModal
+							isOpen={isModalOpen}
+							message='Are you sure you want to delete this job?'
+							onConfirm={handleDelete}
+							onCancel={() => setModalOpen(false)}
+						/>
 					</div>
 				</footer>
 			</div>
