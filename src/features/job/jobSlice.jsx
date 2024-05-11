@@ -30,6 +30,14 @@ export const deleteJob = createAsyncThunk(
 	}
 );
 
+export const editJob = createAsyncThunk(
+	'job/editJob',
+	async ({ jobId, job }, thunkAPI) => {
+		console.log('Inside editJob Thunk', { jobId, job });
+		return editJobThunk(`/jobs/${jobId}`, job, thunkAPI);
+	}
+);
+
 const jobSlice = createSlice({
 	name: 'job',
 	initialState,
@@ -71,6 +79,17 @@ const jobSlice = createSlice({
 			toast.success('Job deleted successfully!');
 		},
 		[deleteJob.rejected]: (state, { payload }) => {
+			state.isLoading = false;
+			toast.error(payload);
+		},
+		[editJob.pending]: (state) => {
+			state.isLoading = true;
+		},
+		[editJob.fulfilled]: (state) => {
+			state.isLoading = false;
+			toast.success('Job Modified...');
+		},
+		[editJob.rejected]: (state, { payload }) => {
 			state.isLoading = false;
 			toast.error(payload);
 		},

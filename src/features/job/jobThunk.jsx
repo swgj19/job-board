@@ -47,3 +47,19 @@ export const deleteJobThunk = async (url, thunkAPI) => {
 		thunkAPI.dispatch(hideLoading());
 	}
 };
+
+export const editJobThunk = async (url, job, thunkAPI) => {
+	try {
+		console.log('Sending PATCH request to:', url, 'with job:', job);
+		const resp = await customFetch.patch(url, job, {
+			headers: {
+				authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+			},
+		});
+		thunkAPI.dispatch(clearValues());
+		return resp.data;
+	} catch (error) {
+		console.error('Error in editJobThunk:', error);
+		return thunkAPI.rejectWithValue(error.response?.data.msg);
+	}
+};
