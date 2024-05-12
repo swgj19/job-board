@@ -16,26 +16,25 @@ const Navbar = () => {
 	};
 
 	const handleToggleDropdown = (event) => {
-		// Prevents the document's click listener from firing when the button itself is clicked
 		event.stopPropagation();
 		setShowLogout((prev) => !prev);
 	};
 
 	useEffect(() => {
-		const handleClickOutside = (e) => {
-			// Check if the click is outside the toggle button and the dropdown is visible
+		const handleClickOutside = (event) => {
 			if (
 				showLogout &&
 				toggleBtnRef.current &&
-				!toggleBtnRef.current.contains(e.target)
+				!toggleBtnRef.current.contains(event.target)
 			) {
 				setShowLogout(false);
 			}
 		};
 
-		document.addEventListener('mousedown', handleClickOutside);
+		document.addEventListener('click', handleClickOutside);
+
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('click', handleClickOutside);
 		};
 	}, [showLogout]);
 
@@ -64,7 +63,10 @@ const Navbar = () => {
 						<button
 							type='button'
 							className='dropdown-btn'
-							onClick={() => dispatch(logoutUser('Logging out...'))}
+							onClick={() => {
+								console.log('Logout button clicked');
+								dispatch(logoutUser());
+							}}
 						>
 							logout
 						</button>

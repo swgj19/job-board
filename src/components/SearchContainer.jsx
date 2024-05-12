@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SearchContainer = () => {
-	return <h2>SearchContainer</h2>;
+	return <h3>SearchContainer</h3>;
 };
 
 export default SearchContainer;

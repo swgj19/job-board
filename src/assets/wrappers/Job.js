@@ -1,30 +1,24 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.article`
-	background: var(--white);
-	border-radius: var(--borderRadius);
-	display: grid;
-	grid-template-rows: 1fr auto;
-	box-shadow: var(--shadow-2);
-
+	display: flex;
+	width: 100%;
+	flex-wrap: nowrap;
+	margin-bottom: 2em;
 	header {
-		padding: 1rem 1.5rem;
-		border-bottom: 1px solid var(--grey-100);
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: center;
-		h5 {
-			letter-spacing: 0;
-		}
+		flex: 30%;
+		background-color: var(--white);
+		padding: 10px;
 	}
 	.main-icon {
-		width: 60px;
-		height: 60px;
-		display: grid;
-		place-items: center;
+		width: 22px;
+		height: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		background: var(--primary-500);
 		border-radius: var(--borderRadius);
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		color: var(--white);
@@ -54,28 +48,15 @@ const Wrapper = styled.article`
 		background: #ffeeee;
 	}
 	.content {
-		padding: 1rem 1.5rem;
+		flex: 70%;
+		background-color: var(--white);
+		padding: 10px;
 	}
+
 	.content-center {
-		display: grid;
-		grid-template-columns: 1fr;
-		row-gap: 0.5rem;
-		column-gap: 0.5rem;
-		@media (min-width: 576px) {
-			grid-template-columns: minmax(130px, 1fr) minmax(140px, 2fr) minmax(
-					120px,
-					1fr
-				);
-		}
-		@media (min-width: 992px) {
-			grid-template-columns: 1fr;
-		}
-		@media (min-width: 1120px) {
-			grid-template-columns: minmax(130px, 1fr) minmax(140px, 2fr) minmax(
-					120px,
-					1fr
-				);
-		}
+		display: flex;
+		flex-grow: 1;
+		justify-content: space-between;
 	}
 
 	.status {
@@ -86,6 +67,8 @@ const Wrapper = styled.article`
 		width: auto;
 		height: 30px;
 		margin-top: 0.5rem;
+		padding-left: 0.2em;
+		padding-right: 0.2em;
 	}
 	footer {
 		margin-top: 1rem;

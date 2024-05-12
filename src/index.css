@@ -13,16 +13,16 @@ html {
 
 :root {
 	/* colors */
-	--primary-50: #e5dbec;
-	--primary-100: #d3c2dd;
-	--primary-200: #bda6cb;
-	--primary-300: #a889b9;
-	--primary-400: #9470aa;
-	--primary-500: #7f5799;
-	--primary-600: #6a3f88;
-	--primary-700: #542775;
-	--primary-800: #3f1063;
-	--primary-900: #290849;
+	--primary-50: #e0f7f6;
+	--primary-100: #b3eeeb;
+	--primary-200: #80e5df;
+	--primary-300: #4ddbd3;
+	--primary-400: #26d4ca;
+	--primary-500: #00ccbf;
+	--primary-600: #00b7ab;
+	--primary-700: #009f94;
+	--primary-800: #00877d;
+	--primary-900: #00685f;
 
 	/* grey */
 	--grey-50: #f0f4f8;
