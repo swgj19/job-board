@@ -2,14 +2,11 @@ import customFetch from '../../utils/axios';
 import { logoutUser } from '../user/userSlice';
 import { clearValues } from './jobSlice';
 import { showLoading, hideLoading, getAllJobs } from '../allJobs/allJobsSlice';
+import authHeader from '../../utils/authHeader';
 
 export const createJobThunk = async (url, job, thunkAPI) => {
 	try {
-		const resp = await customFetch.post(url, job, {
-			headers: {
-				authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-			},
-		});
+		const resp = await customFetch.post(url, job, authHeader(thunkAPI));
 		thunkAPI.dispatch(clearValues());
 		return resp.data;
 	} catch (error) {
@@ -26,11 +23,7 @@ export const createJobThunk = async (url, job, thunkAPI) => {
 export const deleteJobThunk = async (url, thunkAPI) => {
 	thunkAPI.dispatch(showLoading());
 	try {
-		const resp = await customFetch.delete(url, {
-			headers: {
-				authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-			},
-		});
+		const resp = await customFetch.delete(url, authHeader(thunkAPI));
 		thunkAPI.dispatch(getAllJobs());
 		thunkAPI.dispatch(hideLoading());
 		return resp.data;
@@ -51,11 +44,7 @@ export const deleteJobThunk = async (url, thunkAPI) => {
 export const editJobThunk = async (url, job, thunkAPI) => {
 	try {
 		console.log('Sending PATCH request to:', url, 'with job:', job);
-		const resp = await customFetch.patch(url, job, {
-			headers: {
-				authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
-			},
-		});
+		const resp = await customFetch.patch(url, job, authHeader(thunkAPI));
 		thunkAPI.dispatch(clearValues());
 		return resp.data;
 	} catch (error) {
